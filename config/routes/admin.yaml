@@ -1,0 +1,19 @@
+sfs_config_admin_list:
+    path: /
+    controller: sfs_crudl.controller.sfs_config::list
+    methods: [GET]
+
+sfs_config_admin_update:
+    path: /{id}/edit
+    controller: sfs_crudl.controller.sfs_config::update
+    methods: [GET, POST]
+
+sfs_config_admin_delete:
+    path: /{id}/reset
+    controller: sfs_crudl.controller.sfs_config::delete
+    methods: [GET, POST]
+
+sfs_config_admin_read:
+    path: /{id}
+    controller: sfs_crudl.controller.sfs_config::read
+    methods: [GET]

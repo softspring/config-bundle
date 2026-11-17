@@ -1,0 +1,18 @@
+{% extends '@SfsConfig/admin/layout.html.twig' %}
+{% set page_title = page.groupConfig ? 'group_title'|trans({'%group%': page.groupConfig.label|trans({}, page.groupConfig.translation_domain)}, 'sfs_config') : 'title'|trans({}, 'sfs_config') %}
+
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item"><a href="{{ path(page.routes.list) }}">{{ page_title }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ path(page.routes.read, {id: setting.id}) }}">{{ definition.label|trans({}, 'sfs_config') }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'reset'|trans({}, 'sfs_config') }}</li>
+{% endblock breadcrums_content %}
+
+{% block content %}
+    <h1>{{ definition.label|trans({}, 'sfs_config') }}</h1>
+    <p>{{ 'reset_help'|trans({}, 'sfs_config') }}</p>
+    <div class="bg-white p-4 rounded">{{ form_start(form) }}{{ form_errors(form) }}{{ form_widget(form) }}
+        <button class="btn btn-primary" type="submit">{{ 'reset'|trans({}, 'sfs_config') }}</button>
+        <a class="btn btn-outline-secondary" href="{{ path(page.routes.list) }}">{{ 'back'|trans({}, 'sfs_config') }}</a>
+    {{ form_end(form) }}</div>
+{% endblock %}

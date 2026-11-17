@@ -1,0 +1,26 @@
+{% extends '@SfsConfig/admin/layout.html.twig' %}
+{% set page_title = page.groupConfig ? 'group_title'|trans({'%group%': page.groupConfig.label|trans({}, page.groupConfig.translation_domain)}, 'sfs_config') : 'title'|trans({}, 'sfs_config') %}
+
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+{% endblock breadcrums_content %}
+
+{% block content %}
+    <h1 class="mb-4">{{ page_title }}</h1>
+    {% for group in groups %}
+        <section class="bg-white p-4 rounded border mb-4" id="config-group-{{ group.key }}" data-config-group="{{ group.key }}">
+            <h2 class="h4">{{ group.config.label|trans({}, group.config.translation_domain) }}</h2>
+            {% if group.config.description %}<p class="text-muted">{{ group.config.description|trans({}, group.config.translation_domain) }}</p>{% endif %}
+            <div class="table-responsive"><table class="table mb-0">
+                <thead><tr><th>{{ 'setting'|trans({}, 'sfs_config') }}</th><th>{{ 'source'|trans({}, 'sfs_config') }}</th><th></th></tr></thead>
+                <tbody>{% for row in group.settings %}<tr data-config-key="{{ row.key }}">
+                    <td><a href="{{ path(page.routes.read, {id: row.key}) }}">{{ row.definition.label|trans({}, 'sfs_config') }}</a><small class="d-block text-muted">{{ row.key }}</small></td>
+                    <td>{{ (row.overridden ? 'override' : 'default')|trans({}, 'sfs_config') }}</td>
+                    <td class="text-end text-nowrap">{% if row.canUpdate %}<a class="btn btn-outline-primary" href="{{ path(page.routes.update, {id: row.key}) }}">{{ 'edit'|trans({}, 'sfs_config') }}</a>{% endif %}
+                    {% if row.canDelete %}<a class="btn btn-outline-secondary" href="{{ path(page.routes.delete, {id: row.key}) }}">{{ 'reset'|trans({}, 'sfs_config') }}</a>{% endif %}</td>
+                </tr>{% endfor %}</tbody>
+            </table></div>
+        </section>
+    {% else %}<p class="bg-white p-4 rounded">{{ 'empty'|trans({}, 'sfs_config') }}</p>{% endfor %}
+{% endblock %}

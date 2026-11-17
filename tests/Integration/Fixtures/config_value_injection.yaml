@@ -1,0 +1,8 @@
+services:
+    test.yaml_consumer:
+        class: Softspring\Bundle\ConfigBundle\Tests\Integration\YamlConfigConsumer
+        public: true
+        arguments:
+            $value: !service
+                class: Softspring\Bundle\ConfigBundle\Config\ConfigValue
+                arguments: ['@sfs_config.provider', 'dynamic.key']

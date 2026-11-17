@@ -1,0 +1,10 @@
+{% extends ['@SfsComponents/base.html.twig', 'base.html.twig', '@SfsConfig/base.html.twig'] %}
+
+{% block body %}
+    <main class="container py-4">
+        <nav aria-label="{{ 'breadcrumbs.label'|trans({}, 'sfs_config') }}">
+            <ol class="breadcrumb">{% block breadcrums_content %}{% endblock %}</ol>
+        </nav>
+        {% block content %}{% endblock %}
+    </main>
+{% endblock %}
