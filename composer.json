@@ -4,17 +4,30 @@
     "license": "AGPL-3.0-or-later",
     "type": "symfony-bundle",
     "require": {
+        "doctrine/dbal": "^3.8 || ^4.0",
+        "doctrine/doctrine-bundle": "^2.13 || ^3.0",
+        "doctrine/orm": "^2.20 || ^3.0",
         "php": ">=8.4",
+        "softspring/crudl-bundle": "6.1.*@dev",
         "symfony/config": "^6.4 || ^7.4 || ^8.0",
         "symfony/dependency-injection": "^6.4 || ^7.4 || ^8.0",
-        "symfony/http-kernel": "^6.4 || ^7.4 || ^8.0"
+        "symfony/form": "^6.4 || ^7.4 || ^8.0",
+        "symfony/http-kernel": "^6.4 || ^7.4 || ^8.0",
+        "symfony/routing": "^6.4 || ^7.4 || ^8.0",
+        "symfony/security-bundle": "^6.4 || ^7.4 || ^8.0",
+        "symfony/translation": "^6.4 || ^7.4 || ^8.0",
+        "symfony/twig-bundle": "^6.4 || ^7.4 || ^8.0",
+        "symfony/validator": "^6.4 || ^7.4 || ^8.0"
     },
     "require-dev": {
+        "doctrine/doctrine-migrations-bundle": "^3.4 || ^4.0",
         "ergebnis/composer-normalize": "^2.50",
         "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^13.4",
         "rector/rector": "^2.6.7",
+        "symfony/browser-kit": "^6.4 || ^7.4 || ^8.0",
+        "symfony/css-selector": "^6.4 || ^7.4 || ^8.0",
         "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
         "symfony/polyfill-php85": "^1.33",
         "symfony/yaml": "^6.4 || ^7.4 || ^8.0"

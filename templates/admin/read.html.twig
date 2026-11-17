@@ -1,0 +1,15 @@
+{% extends '@SfsConfig/admin/layout.html.twig' %}
+{% trans_default_domain 'sfs_config' %}
+{% set page_title = page.groupConfig ? 'group_title'|trans({'%group%': page.groupConfig.label|trans({}, page.groupConfig.translation_domain)}) : 'title'|trans %}
+
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item"><a href="{{ path(page.routes.list) }}">{{ page_title }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ definition.label|trans }}</li>
+{% endblock breadcrums_content %}
+
+{% block content %}
+    <h1>{{ definition.label|trans }}</h1><p>{{ definition.help|trans }}</p>
+    <pre class="bg-white p-4 text-wrap">{{ setting.value is iterable ? setting.value|json_encode : (setting.value is same as(true) ? 'true' : (setting.value is same as(false) ? 'false' : (setting.value is same as(null) ? 'null' : setting.value))) }}</pre>
+    <a class="btn btn-outline-secondary" href="{{ path(page.routes.list) }}">{{ 'back'|trans }}</a>
+{% endblock %}
