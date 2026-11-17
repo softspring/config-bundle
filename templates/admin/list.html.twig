@@ -15,7 +15,10 @@
             <div class="table-responsive"><table class="table mb-0">
                 <thead><tr><th>{{ 'setting'|trans({}, 'sfs_config') }}</th><th>{{ 'source'|trans({}, 'sfs_config') }}</th><th></th></tr></thead>
                 <tbody>{% for row in group.settings %}<tr data-config-key="{{ row.key }}">
-                    <td><a href="{{ path(page.routes.read, {id: row.key}) }}">{{ row.definition.label|trans({}, 'sfs_config') }}</a><small class="d-block text-muted">{{ row.key }}</small></td>
+                    <td>
+                        <a href="{{ path(page.routes.read, {id: row.key}) }}">{{ row.definition.label|trans({}, 'sfs_config') }}</a>
+                        {% if row.definition.help %}<p class="small text-muted mb-1">{{ row.definition.help|trans({}, 'sfs_config') }}</p>{% endif %}
+                    </td>
                     <td>{{ (row.overridden ? 'override' : 'default')|trans({}, 'sfs_config') }}</td>
                     <td class="text-end text-nowrap">{% if row.canUpdate %}<a class="btn btn-outline-primary" href="{{ path(page.routes.update, {id: row.key}) }}">{{ 'edit'|trans({}, 'sfs_config') }}</a>{% endif %}
                     {% if row.canDelete %}<a class="btn btn-outline-secondary" href="{{ path(page.routes.delete, {id: row.key}) }}">{{ 'reset'|trans({}, 'sfs_config') }}</a>{% endif %}</td>
