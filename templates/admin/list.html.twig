@@ -1,6 +1,5 @@
 {% extends '@SfsConfig/admin/layout.html.twig' %}
-{% trans_default_domain 'sfs_config' %}
-{% set page_title = page.groupConfig ? 'group_title'|trans({'%group%': page.groupConfig.label|trans({}, page.groupConfig.translation_domain)}) : 'title'|trans %}
+{% set page_title = page.groupConfig ? 'group_title'|trans({'%group%': page.groupConfig.label|trans({}, page.groupConfig.translation_domain)}, 'sfs_config') : 'title'|trans({}, 'sfs_config') %}
 
 {% block breadcrums_content %}
     {{ parent() }}
@@ -14,14 +13,14 @@
             <h2 class="h4">{{ group.config.label|trans({}, group.config.translation_domain) }}</h2>
             {% if group.config.description %}<p class="text-muted">{{ group.config.description|trans({}, group.config.translation_domain) }}</p>{% endif %}
             <div class="table-responsive"><table class="table mb-0">
-                <thead><tr><th>{{ 'setting'|trans }}</th><th>{{ 'source'|trans }}</th><th></th></tr></thead>
+                <thead><tr><th>{{ 'setting'|trans({}, 'sfs_config') }}</th><th>{{ 'source'|trans({}, 'sfs_config') }}</th><th></th></tr></thead>
                 <tbody>{% for row in group.settings %}<tr data-config-key="{{ row.key }}">
-                    <td><a href="{{ path(page.routes.read, {id: row.key}) }}">{{ row.definition.label|trans }}</a><small class="d-block text-muted">{{ row.key }}</small></td>
-                    <td>{{ (row.overridden ? 'override' : 'default')|trans }}</td>
-                    <td class="text-end text-nowrap">{% if row.canUpdate %}<a class="btn btn-outline-primary" href="{{ path(page.routes.update, {id: row.key}) }}">{{ 'edit'|trans }}</a>{% endif %}
-                    {% if row.canDelete %}<a class="btn btn-outline-secondary" href="{{ path(page.routes.delete, {id: row.key}) }}">{{ 'reset'|trans }}</a>{% endif %}</td>
+                    <td><a href="{{ path(page.routes.read, {id: row.key}) }}">{{ row.definition.label|trans({}, 'sfs_config') }}</a><small class="d-block text-muted">{{ row.key }}</small></td>
+                    <td>{{ (row.overridden ? 'override' : 'default')|trans({}, 'sfs_config') }}</td>
+                    <td class="text-end text-nowrap">{% if row.canUpdate %}<a class="btn btn-outline-primary" href="{{ path(page.routes.update, {id: row.key}) }}">{{ 'edit'|trans({}, 'sfs_config') }}</a>{% endif %}
+                    {% if row.canDelete %}<a class="btn btn-outline-secondary" href="{{ path(page.routes.delete, {id: row.key}) }}">{{ 'reset'|trans({}, 'sfs_config') }}</a>{% endif %}</td>
                 </tr>{% endfor %}</tbody>
             </table></div>
         </section>
-    {% else %}<p class="bg-white p-4 rounded">{{ 'empty'|trans }}</p>{% endfor %}
+    {% else %}<p class="bg-white p-4 rounded">{{ 'empty'|trans({}, 'sfs_config') }}</p>{% endfor %}
 {% endblock %}
